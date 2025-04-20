@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<launch>
+  <!-- Start core ROV systems -->
+  <include file="$(find orca_bringup)/launch/orca_core.launch"/>
+  
+  <!-- Start perception system -->
+  <include file="$(find orca_perception)/launch/perception.launch"/>
+  
+  <!-- Start visualization -->
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find orca_description)/rviz/orca.rviz" required="false"/>
+</launch>

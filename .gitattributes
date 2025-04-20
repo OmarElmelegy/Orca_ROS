@@ -1,0 +1,27 @@
+# Set default behavior to automatically normalize line endings
+* text=auto
+
+# Explicitly declare text files to be normalized
+*.c text
+*.cpp text
+*.h text
+*.hpp text
+*.py text
+*.sh text eol=lf
+*.bat text eol=crlf
+*.md text
+*.xml text
+*.yaml text
+*.launch text
+*.urdf text
+*.xacro text
+*.rviz text
+*.cfg text eol=lf
+
+# Declare binary files that should not be modified
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.dae binary
+*.stl binary

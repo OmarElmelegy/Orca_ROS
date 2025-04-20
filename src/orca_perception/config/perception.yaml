@@ -1,0 +1,17 @@
+# Perception configuration for the Orca ROV
+
+# Length measurement parameters
+length_measurement:
+  min_distance: 0.1  # Minimum distance for filtering (meters)
+  max_distance: 2.0  # Maximum distance for filtering (meters)
+  cluster_tolerance: 0.02  # Clustering tolerance (meters)
+  min_cluster_size: 100  # Minimum cluster size (points)
+  max_cluster_size: 25000  # Maximum cluster size (points)
+
+# Object detection parameters
+object_detection:
+  camera_topic: "/front_camera/image_raw"
+  detection_method: "contour"  # "contour" or "color"
+  min_area: 1000  # Minimum contour area (pixels)
+  target_color_lower: [0, 100, 100]  # HSV lower bound for color detection
+  target_color_upper: [10, 255, 255]  # HSV upper bound for color detection

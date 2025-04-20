@@ -1,0 +1,32 @@
+# Hardware configuration for the Orca ROV
+
+# Pressure sensor configuration
+pressure_sensor:
+  i2c_bus: "/dev/i2c-1"
+  i2c_address: 0x76
+  fluid_density: 1000.0  # kg/m^3 (freshwater)
+  update_rate: 10.0  # Hz
+
+# Camera configuration
+cameras:
+  camera_names: ['front_camera', 'rear_camera', 'realsense']
+  camera_urls:
+    front_camera: "file:///$(find orca_hw_interface)/config/calibration/front_camera.yaml"
+    rear_camera: "file:///$(find orca_hw_interface)/config/calibration/rear_camera.yaml"
+    realsense: "file:///$(find orca_hw_interface)/config/calibration/realsense.yaml"
+  camera_frames:
+    front_camera: "front_camera_optical_frame"
+    rear_camera: "rear_camera_optical_frame"
+    realsense: "realsense_color_frame"
+
+# MAVROS configuration
+mavros:
+  fcu_url: "/dev/ttyACM0:115200"
+  gcs_url: "udp://@192.168.2.1:14550"
+  system_id: 1
+  component_id: 1
+  target_system_id: 1
+  target_component_id: 1
+  tgt_system: 1
+  tgt_component: 1
+  fcu_protocol: "v2.0"

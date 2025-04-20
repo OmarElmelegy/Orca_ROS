@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>orca_control</name>
+  <version>0.1.0</version>
+  <description>
+    Control system for the Orca ROV
+  </description>
+
+  <maintainer email="user@example.com">Orca Team</maintainer>
+  <license>MIT</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  
+  <depend>roscpp</depend>
+  <depend>rospy</depend>
+  <depend>std_msgs</depend>
+  <depend>geometry_msgs</depend>
+  <depend>sensor_msgs</depend>
+  <depend>mavros_msgs</depend>
+  <depend>tf2</depend>
+  <depend>tf2_ros</depend>
+  <depend>dynamic_reconfigure</depend>
+  <depend>controller_manager</depend>
+  <depend>control_toolbox</depend>
+  
+  <export>
+  </export>
+</package>

@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>orca_description</name>
+  <version>0.1.0</version>
+  <description>
+    URDF description for the Orca ROV
+  </description>
+
+  <maintainer email="user@example.com">Orca Team</maintainer>
+  <license>MIT</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  
+  <depend>urdf</depend>
+  <depend>xacro</depend>
+  <depend>robot_state_publisher</depend>
+  <depend>joint_state_publisher</depend>
+  <depend>joint_state_publisher_gui</depend>
+  <depend>rviz</depend>
+  <depend>gazebo_ros</depend>
+  
+  <export>
+    <gazebo_ros gazebo_model_path="${prefix}/meshes"/>
+    <gazebo_ros gazebo_media_path="${prefix}/meshes"/>
+  </export>
+</package>

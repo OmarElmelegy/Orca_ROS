@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<launch>
+  <!-- Start core ROV systems -->
+  <include file="$(find orca_bringup)/launch/orca_core.launch"/>
+  
+  <!-- Start perception system -->
+  <include file="$(find orca_perception)/launch/perception.launch"/>
+  
+  <!-- Start object retrieval mission -->
+  <include file="$(find orca_missions)/launch/object_retrieval.launch"/>
+</launch>

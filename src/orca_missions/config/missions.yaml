@@ -1,0 +1,16 @@
+# Mission configuration for the Orca ROV
+
+# Water sampling mission parameters
+water_sampling:
+  depth: 1.0  # Target depth in meters
+  heading: 0.0  # Target heading in degrees
+  forward_force: 10.0  # Forward force for movement
+  sampling_duration: 3.0  # Duration of sampling in seconds
+
+# Object retrieval mission parameters
+object_retrieval:
+  search_timeout: 30.0  # Search timeout in seconds
+  approach_timeout: 30.0  # Approach timeout in seconds
+  gripper_open_time: 2.0  # Time to wait for grippers to open in seconds
+  gripper_close_time: 2.0  # Time to wait for grippers to close in seconds
+  surface_time: 10.0  # Time to wait for surfacing in seconds

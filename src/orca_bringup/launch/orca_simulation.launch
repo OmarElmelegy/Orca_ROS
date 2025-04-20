@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<launch>
+  <!-- Start Gazebo simulation -->
+  <include file="$(find orca_description)/launch/gazebo.launch"/>
+  
+  <!-- Start control system -->
+  <include file="$(find orca_control)/launch/control.launch"/>
+  
+  <!-- Start perception system -->
+  <include file="$(find orca_perception)/launch/perception.launch"/>
+  
+  <!-- Start visualization -->
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find orca_description)/rviz/orca.rviz" required="false"/>
+</launch>

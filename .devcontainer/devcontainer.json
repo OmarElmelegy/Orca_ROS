@@ -1,0 +1,40 @@
+{
+    "name": "Orca ROV ROS Noetic",
+    "dockerFile": "Dockerfile",
+    "runArgs": [
+        "--privileged",
+        "--network=host",
+        "--cap-add=SYS_PTRACE",
+        "--security-opt=seccomp:unconfined",
+        "--security-opt=apparmor:unconfined",
+        "--volume=/tmp/.X11-unix:/tmp/.X11-unix"
+    ],
+    "containerEnv": {
+        "DISPLAY": "${localEnv:DISPLAY}",
+        "QT_X11_NO_MITSHM": "1"
+    },
+    "extensions": [
+        "ms-vscode.cpptools",
+        "ms-python.python",
+        "ms-vscode.cmake-tools",
+        "twxs.cmake",
+        "ms-iot.vscode-ros"
+    ],
+    "settings": {
+        "terminal.integrated.profiles.linux": {
+            "bash": {
+                "path": "bash"
+            }
+        },
+        "terminal.integrated.defaultProfile.linux": "bash",
+        "python.defaultInterpreterPath": "/usr/bin/python3",
+        "python.linting.enabled": true,
+        "python.linting.pylintEnabled": true,
+        "python.formatting.provider": "autopep8",
+        "editor.formatOnSave": true,
+        "cmake.configureOnOpen": true,
+        "C_Cpp.default.intelliSenseMode": "linux-gcc-x64"
+    },
+    "remoteUser": "root",
+    "postCreateCommand": "rosdep update && echo 'source /opt/ros/noetic/setup.bash' >> ~/.bashrc && echo 'source /workspaces/Orca_ws/devel/setup.bash' >> ~/.bashrc"
+}

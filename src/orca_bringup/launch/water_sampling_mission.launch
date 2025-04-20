@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<launch>
+  <!-- Start core ROV systems -->
+  <include file="$(find orca_bringup)/launch/orca_core.launch"/>
+  
+  <!-- Start water sampling mission -->
+  <include file="$(find orca_missions)/launch/water_sampling.launch"/>
+</launch>

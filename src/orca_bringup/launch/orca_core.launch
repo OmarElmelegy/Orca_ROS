@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<launch>
+  <!-- Load robot description -->
+  <include file="$(find orca_description)/launch/display.launch">
+    <arg name="gui" value="false"/>
+  </include>
+  
+  <!-- Start hardware interface -->
+  <include file="$(find orca_hw_interface)/launch/hardware.launch"/>
+  
+  <!-- Start control system -->
+  <include file="$(find orca_control)/launch/control.launch"/>
+</launch>

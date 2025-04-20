@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<robot name="orca_rov" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!-- Include material definitions -->
+  <xacro:include filename="$(find orca_description)/urdf/materials.xacro" />
+  
+  <!-- Include thruster macros -->
+  <xacro:include filename="$(find orca_description)/urdf/thrusters.xacro" />
+  
+  <!-- Include sensor macros -->
+  <xacro:include filename="$(find orca_description)/urdf/sensors.xacro" />
+  
+  <!-- Include gripper macros -->
+  <xacro:include filename="$(find orca_description)/urdf/grippers.xacro" />
+
+  <!-- Base Properties -->
+  <xacro:property name="body_length" value="0.6" />
+  <xacro:property name="body_width" value="0.4" />
+  <xacro:property name="body_height" value="0.3" />
+  <xacro:property name="body_mass" value="20.0" />
+
+  <!-- Base Link (ROV Body) -->
+  <link name="base_link">
+    <inertial>
+      <mass value="${body_mass}" />
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <inertia 
+        ixx="${body_mass/12.0 * (body_height*body_height + body_width*body_width)}" 
+        ixy="0.0" 
+        ixz="0.0" 
+        iyy="${body_mass/12.0 * (body_length*body_length + body_height*body_height)}" 
+        iyz="0.0" 
+        izz="${body_mass/12.0 * (body_length*body_length + body_width*body_width)}" />
+    </inertial>
+    
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <box size="${body_length} ${body_width} ${body_height}" />
+      </geometry>
+      <material name="blue" />
+    </visual>
+    
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <box size="${body_length} ${body_width} ${body_height}" />
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- Add thrusters -->
+  <xacro:t200_thruster name="thruster_front_right" parent="base_link" xyz="${body_length/2-0.05} ${-body_width/2-0.05} 0" rpy="0 ${pi/2} 0" />
+  <xacro:t200_thruster name="thruster_front_left" parent="base_link" xyz="${body_length/2-0.05} ${body_width/2+0.05} 0" rpy="0 ${pi/2} 0" />
+  <xacro:t200_thruster name="thruster_rear_right" parent="base_link" xyz="${-body_length/2+0.05} ${-body_width/2-0.05} 0" rpy="0 ${pi/2} 0" />
+  <xacro:t200_thruster name="thruster_rear_left" parent="base_link" xyz="${-body_length/2+0.05} ${body_width/2+0.05} 0" rpy="0 ${pi/2} 0" />
+  
+  <xacro:t200_thruster name="thruster_top_front_right" parent="base_link" xyz="${body_length/4} ${-body_width/4} ${body_height/2+0.05}" rpy="${pi/2} 0 0" />
+  <xacro:t200_thruster name="thruster_top_front_left" parent="base_link" xyz="${body_length/4} ${body_width/4} ${body_height/2+0.05}" rpy="${pi/2} 0 0" />
+  <xacro:t200_thruster name="thruster_top_rear_right" parent="base_link" xyz="${-body_length/4} ${-body_width/4} ${body_height/2+0.05}" rpy="${pi/2} 0 0" />
+  <xacro:t200_thruster name="thruster_top_rear_left" parent="base_link" xyz="${-body_length/4} ${body_width/4} ${body_height/2+0.05}" rpy="${pi/2} 0 0" />
+
+  <!-- Add cameras -->
+  <xacro:realsense_d415 name="realsense" parent="base_link" xyz="${body_length/2+0.02} 0 0" rpy="0 0 0" />
+  <xacro:hikvision_camera name="front_camera" parent="base_link" xyz="${body_length/2+0.02} 0 ${body_height/4}" rpy="0 0 0" />
+  <xacro:generic_camera name="rear_camera" parent="base_link" xyz="${-body_length/2-0.02} 0 0" rpy="0 ${pi} 0" />
+
+  <!-- Add grippers -->
+  <xacro:newton_gripper name="gripper_right" parent="base_link" xyz="${body_length/2+0.05} ${-body_width/4} ${-body_height/4}" rpy="0 0 0" />
+  <xacro:newton_gripper name="gripper_left" parent="base_link" xyz="${body_length/2+0.05} ${body_width/4} ${-body_height/4}" rpy="0 0 0" />
+
+  <!-- Add pressure sensor -->
+  <xacro:pressure_sensor name="pressure" parent="base_link" xyz="0 0 ${-body_height/2-0.02}" rpy="0 0 0" />
+
+  <!-- Add IMU (representing the Pixhawk) -->
+  <xacro:imu_sensor name="imu" parent="base_link" xyz="0 0 0" rpy="0 0 0" />
+
+</robot>

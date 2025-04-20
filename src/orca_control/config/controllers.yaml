@@ -1,0 +1,49 @@
+# Controller configuration for the Orca ROV
+
+# Thruster configuration
+thruster_positions_x: [0.25, 0.25, -0.25, -0.25, 0.15, 0.15, -0.15, -0.15]
+thruster_positions_y: [-0.2, 0.2, -0.2, 0.2, -0.1, 0.1, -0.1, 0.1]
+thruster_positions_z: [0.0, 0.0, 0.0, 0.0, 0.15, 0.15, 0.15, 0.15]
+thruster_orientations_x: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+thruster_orientations_y: [1.0, 1.0, 1.0, 1.0, 0.0, 0.0, 0.0, 0.0]
+thruster_orientations_z: [0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 1.0, 1.0]
+
+# Depth controller parameters
+depth_p: 100.0
+depth_i: 10.0
+depth_d: 20.0
+depth_i_max: 100.0
+depth_i_min: -100.0
+atmospheric_pressure: 101325.0  # Pa
+water_density: 1000.0  # kg/m^3
+gravity: 9.80665  # m/s^2
+use_mavros_altitude: true
+
+# Heading controller parameters
+heading_p: 5.0
+heading_i: 0.1
+heading_d: 1.0
+heading_i_max: 10.0
+heading_i_min: -10.0
+
+# Gripper parameters
+left_servo_channel: 9
+right_servo_channel: 10
+open_pwm: 1900
+close_pwm: 1100
+
+# Joint state controller
+joint_state_controller:
+  type: joint_state_controller/JointStateController
+  publish_rate: 50
+
+# Gripper controllers
+gripper_left_position_controller:
+  type: position_controllers/JointPositionController
+  joint: gripper_left_joint
+  pid: {p: 100.0, i: 0.01, d: 10.0}
+
+gripper_right_position_controller:
+  type: position_controllers/JointPositionController
+  joint: gripper_right_joint
+  pid: {p: 100.0, i: 0.01, d: 10.0}

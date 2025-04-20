@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<launch>
+  <!-- Load controller parameters -->
+  <rosparam command="load" file="$(find orca_control)/config/controllers.yaml"/>
+  
+  <!-- Start thruster allocator -->
+  <node name="thruster_allocator" pkg="orca_control" type="thruster_allocator" output="screen">
+    <remap from="thruster_commands" to="/mavros/rc/override"/>
+  </node>
+  
+  <!-- Start depth controller -->
+  <node name="depth_controller" pkg="orca_control" type="depth_controller" output="screen">
+    <remap from="pressure" to="/pressure/data"/>
+  </node>
+  
+  <!-- Start heading controller -->
+  <node name="heading_controller" pkg="orca_control" type="heading_controller" output="screen"/>
+  
+  <!-- Start gripper control -->
+  <node name="gripper_control" pkg="orca_control" type="gripper_control.py" output="screen"/>
+  
+  <!-- Start controller manager -->
+  <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
+        output="screen" args="joint_state_controller gripper_left_position_controller gripper_right_position_controller"/>
+</launch>

@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<launch>
+  <!-- Load mission configuration -->
+  <rosparam command="load" file="$(find orca_missions)/config/missions.yaml"/>
+  
+  <!-- Start object retrieval mission -->
+  <node name="object_retrieval_mission" pkg="orca_missions" type="object_retrieval_mission.py" output="screen"/>
+</launch>
