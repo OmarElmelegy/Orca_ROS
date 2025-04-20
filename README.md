@@ -1,6 +1,6 @@
 # Orca ROV ROS Project
 
-This repository contains the ROS (Robot Operating System) project for the Orca Remotely Operated Vehicle (ROV), based on the AAST RobEn Technical Document 2025.
+This repository contains the ROS (Robot Operating System) project for the Orca Remotely Operated Vehicle (ROV)
 
 ## Overview
 
